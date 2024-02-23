@@ -15,6 +15,9 @@ return {
     local trouble = require("trouble.providers.telescope")
 
     telescope.setup({
+      file_ignore_patterns = {
+        "node_modules",
+      },
       defaults = {
         path_display = { "truncate " },
         mappings = {
@@ -44,13 +47,13 @@ return {
     end
 
     keymap.set("n", "<leader>ff", function()
-      call_builtin("find_files")
+      call_builtin("find_files", { hidden = true })
     end, { desc = "Fuzzy find files" })
     keymap.set("n", "<leader>fj", function()
-      call_builtin("find_files", { cwd = utils.buffer_dir() })
+      call_builtin("find_files", { cwd = utils.buffer_dir(), hidden = true })
     end, { desc = "Fuzzy find files in cwd" })
     keymap.set("n", "<leader>fr", function()
-      call_builtin("oldfiles")
+      call_builtin("oldfiles", { hidden = true })
     end, { desc = "Fuzzy find recent files" })
     keymap.set("n", "<leader>fs", function()
       call_builtin("live_grep")
