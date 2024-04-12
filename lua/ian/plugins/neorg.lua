@@ -1,8 +1,19 @@
 return {
   "nvim-neorg/neorg",
   dependencies = { "luarocks.nvim" },
-  -- put any other flags you wanted to pass to lazy here!
+  lazy = false,
+  version = "*",
   config = function()
-    require("neorg").setup({})
+    require("neorg").setup({
+      ["core.defaults"] = {},
+      ["core.norg.concealer"] = {},
+      ["core.norg.dirman"] = {
+        config = {
+          workspaces = {
+            notes = "~/Neorg",
+          },
+        },
+      },
+    })
   end,
 }
